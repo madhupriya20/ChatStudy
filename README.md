@@ -1,5 +1,6 @@
 # Ex. No:1b 			Study of Client Server Chat Applications
-
+## NAME:MADHUPRIYA R
+## REGNO:212224040177
 ## Aim: 
 To perform a study on Client Server Chat Applications
 ## Introduction:
@@ -72,6 +73,63 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 Client-server chat applications are versatile tools that facilitate real-time communication between users over a network. They incorporate various components, including server-side and client-side elements, and must consider factors such as security, scalability, and concurrency. As technology continues to advance, client-server chat applications remain integral for collaborative communication in various domains.
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
+## PROGRAM
+client:
+```
+import socket
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+client.connect(("localhost", 9999))
+
+done=False
+
+while not done:
+    client.send(input("Message ").encode('utf-8'))
+    msg = client.recv(1024).decode('utf-8')
+
+    if msg == 'quit':
+        done=True
+    else:
+        print(msg)
+
+
+
+client.close()
+```
+server:
+```
+from base64 import decode
+from operator import truediv
+
+server =socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(('localhost', 9999))
+server.listen()
+client,addr=server.accept()
+
+done = False
+
+while not done:
+    msg = client.recv(1024).decode('utf-8')
+
+    if msg == 'quit':
+        done = True
+    else:
+        print(msg)
+
+    client.send(input("Message ").encode('utf-8'))
+
+
+client.close()
+server.close()
+```
+## Output:
+![445165855-9a7b2696-d46a-492d-ae7c-b48ca7c010a5](https://github.com/user-attachments/assets/1b1775a3-99eb-492d-8604-9f37bd9fc1c3)
+
+
+![445165948-82c309d8-cd3b-4666-9c5a-a9fcbce78e7d](https://github.com/user-attachments/assets/f0e90c4c-52df-435c-80ba-b0f86afab4ea)
+
+
 
 
 ## Result:
